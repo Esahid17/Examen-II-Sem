@@ -26,12 +26,12 @@ const createNewPrestamo = async (req, res) => {
     try {
         const { body } = req;
 
-        if (!body.monto || !body.plazo_meses || !body.interes) {
+        if (!body.id_cliente || !body.monto || !body.plazo_meses || !body.interes) {
             return res.status(400).json({ error: 'Datos incompletos' });
         }
 
         const newPrestamo = {
-            id_cliente: req.params.id_cliente,
+            id_cliente: body.id_cliente,
             monto: body.monto,
             plazo_meses: body.plazo_meses,
             interes: body.interes
