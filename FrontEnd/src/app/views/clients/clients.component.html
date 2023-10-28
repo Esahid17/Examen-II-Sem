@@ -30,6 +30,10 @@
       <br>
     </form>
 
+    <div>
+      <p *ngIf="clienteEncontrado"> Nombre del cliente: {{ this.nombreCliente }}</p>
+    </div>
+
     <div *ngIf="resultados.length > 0">
       <table class="table">
         <thead>

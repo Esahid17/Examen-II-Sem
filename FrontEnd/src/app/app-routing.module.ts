@@ -5,7 +5,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { ClientsComponent } from './views/clients/clients.component';
 
 const routes: Routes = [
-  { path : '', component:RegisterComponent},
+  { path : '', component:HomeComponent},
+  { path : 'home', component:HomeComponent},
   { path : 'register', component:RegisterComponent},
   { path : 'clients', component:ClientsComponent}
 ];

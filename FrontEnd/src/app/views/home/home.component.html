@@ -4,27 +4,34 @@
         <button (click)="onConsultaClick()">Consulta</button>
     </aside>
 
-    <!-- <main class="content" style="margin-left: 15%;">
-      <header>
-          <h1>Bienvenido a Mi Página de Inicio</h1>
-      </header>
+    <main class="content" style="margin-left: 15%;">
+        <header>
+            <h1>Clientes Registrados</h1>
+          </header>
 
-      <nav>
-          <ul>
-              <li><a href="#">Inicio</a></li>
-              <li><a href="#">Acerca de</a></li>
-              <li><a href="#">Servicios</a></li>
-              <li><a href="#">Contacto</a></li>
-          </ul>
-      </nav>
-
-      <section>
-          <h2>Contenido Principal</h2>
-          <p>Este es el contenido principal de tu página de inicio. Puedes agregar aquí lo que desees.</p>
-      </section>
-
-      <footer>
-          <p>Derechos de autor © 2023 - Tu Nombre</p>
-      </footer>
-  </main> -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>RFC</th>
+                <th>Edad</th>
+                <th>Fecha de registro</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let resultado of resultados">
+                <td>{{ resultado.id_cliente }}</td>
+                <td>{{ resultado.nombre }}</td>
+                <td>{{ resultado.rfc }}</td>
+                <td>{{ resultado.edad }}</td>
+                <td>{{ resultado.fecha_alta | date:'dd/MM/yyyy' }}</td>
+                <td>{{ resultado.telefono }}</td>
+                <td>{{ resultado.correo }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </main>
 </div>

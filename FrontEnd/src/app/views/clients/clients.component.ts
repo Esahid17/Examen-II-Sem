@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class ClientsComponent {
   clienteEncontrado: boolean = false;
   clientForm: FormGroup;
+  nombreCliente: any;
 
   totalPago: number = 0;
   resultados: any[] = [];
@@ -84,7 +85,8 @@ export class ClientsComponent {
         console.log("Respuesta: ", response);
         this.clienteEncontrado = true;
 
-        // Habilitar los campos del formulario al encontrar el cliente
+        this.nombreCliente = response.nombre;
+
         this.clientForm.get('monto')?.enable();
         this.clientForm.get('plazo_meses')?.enable();
         this.clientForm.get('interes')?.enable();

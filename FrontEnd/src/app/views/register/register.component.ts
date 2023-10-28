@@ -43,7 +43,7 @@ export class RegisterComponent {
           console.log("Respuesta: ", response)
           Swal.fire({
             title: 'Cliente registrado',
-            text: 'Tu ID de cliente es: ' + response.id_cliente,
+            html: `Tu ID de cliente es: ` + `<b>${response.id_cliente}</b>`,
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })
