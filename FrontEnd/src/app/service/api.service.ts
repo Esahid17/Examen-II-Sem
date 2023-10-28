@@ -26,20 +26,20 @@ export class ApiService {
     return this.httpClient.get<Cliente[]>(_URL_GET_CLIENTES);
   }
 
-  getClienteById(idCliente: number): Observable<Cliente> {
-    return this.httpClient.get<Cliente>(_URL_GET_CLIENTE_BY_ID + '/' + idCliente);
+  getClienteById(id_cliente: number): Observable<Cliente> {
+    return this.httpClient.get<Cliente>(_URL_GET_CLIENTE_BY_ID + '/' + id_cliente);
   }
 
-  getPrestamosCliente(idCliente: number): Observable<Prestamo[]> {
-    return this.httpClient.get<Prestamo[]>(_URL_GET_PRESTAMOS_CLIENTE + '/' + idCliente);
+  getPrestamosCliente(id_cliente: number): Observable<Prestamo[]> {
+    return this.httpClient.get<Prestamo[]>(_URL_GET_PRESTAMOS_CLIENTE + '/' + id_cliente);
   }
 
   updateClienteById(cliente: Cliente): Observable<Cliente> {
     return this.httpClient.put<Cliente>(_URL_PUT_CLIENTE_BY_ID, cliente);
   }
 
-  deleteClienteById(idCliente: number): Observable<Cliente> {
-    return this.httpClient.delete<Cliente>(_URL_DELETE_CLIENTE_BY_ID + '/' + idCliente);
+  deleteClienteById(id_cliente: number): Observable<Cliente> {
+    return this.httpClient.delete<Cliente>(_URL_DELETE_CLIENTE_BY_ID + '/' + id_cliente);
   }
 
   postPrestamo(prestamo: Prestamo): Observable<Prestamo> {
@@ -50,15 +50,15 @@ export class ApiService {
     return this.httpClient.get<Prestamo[]>(_URL_GET_PRESTAMOS);
   }
 
-  getPrestamoById(idPrestamo: number): Observable<Prestamo> {
-    return this.httpClient.get<Prestamo>(_URL_GET_PRESTAMO_BY_ID + '/' + idPrestamo);
+  getPrestamoById(id_prestamo: number): Observable<Prestamo> {
+    return this.httpClient.get<Prestamo>(_URL_GET_PRESTAMO_BY_ID + '/' + id_prestamo);
   }
 
   updatePrestamoById(prestamo: Prestamo): Observable<Prestamo> {
     return this.httpClient.put<Prestamo>(_URL_PUT_PRESTAMO_BY_ID, prestamo);
   }
 
-  deletePrestamoById(idPrestamo: number): Observable<Prestamo> {
-    return this.httpClient.delete<Prestamo>(_URL_DELETE_PRESTAMO_BY_ID + '/' + idPrestamo);
+  deletePrestamoById(id_prestamo: number): Observable<Prestamo> {
+    return this.httpClient.delete<Prestamo>(_URL_DELETE_PRESTAMO_BY_ID + '/' + id_prestamo);
   }
 }

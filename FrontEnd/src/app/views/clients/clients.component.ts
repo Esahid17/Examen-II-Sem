@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clients',
@@ -10,22 +12,24 @@ import { Router } from '@angular/router';
 
 export class ClientsComponent {
   clientForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
+    id_cliente: new FormControl(''),
     monto: new FormControl(''),
-    plazos: new FormControl(''),
+    plazo_meses: new FormControl(''),
     interes: new FormControl('')
   });
 
+  totalPago: number = 0;
   resultados: any[] = [];
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
+    private apiService: ApiService
   ) {
     this.clientForm = this.fb.group({
-      id: [null, Validators.required], // Otra opción es asignar valores iniciales adecuados
+      id_cliente: [null, Validators.required],
       monto: [null, Validators.required],
-      plazos: [null, Validators.required],
+      plazo_meses: [null, Validators.required],
       interes: [null, Validators.required],
     });
 
@@ -43,13 +47,14 @@ export class ClientsComponent {
     console.log('Botón de Consulta clickeado');
   }
 
-  buscar() {
+  calcular() {
     if (this.clientForm.valid) {
       const monto = this.clientForm.get('monto')?.value;
-      const plazos = this.clientForm.get('plazos')?.value;
+      const plazos = this.clientForm.get('plazo_meses')?.value;
       const interes = this.clientForm.get('interes')?.value / 100;
       const interesFijo = this.clientForm.get('interes')?.value
       const total = monto + (monto * interes)
+      this.totalPago = total;
       console.log("total: ", total)
       const cuota = total / plazos;
 
@@ -71,8 +76,46 @@ export class ClientsComponent {
       }
     }
   }
-  creditoAprobado() {
 
+  buscarCliente() {
+    const id_cliente = this.clientForm.get('id_cliente')?.value;
+
+    this.apiService.getClienteById(id_cliente).subscribe((response) => {
+      if (response) {
+        console.log("Respuesta: ", response)
+        Swal.fire({
+          title: 'Cliente encontrado',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        })
+      }
+    },
+      (error) => {
+        console.log("Error: ", error)
+      }
+    )
+  }
+
+  creditoAprobado() {
+    // Guardar en la base de datos
+    if (this.clientForm.valid) {
+      console.log("Formulario: ", this.clientForm.value)
+
+      this.apiService.postPrestamo(this.clientForm.value).subscribe((response) => {
+        if (response) {
+          console.log("Respuesta: ", response)
+          Swal.fire({
+            title: 'Crédito aprobado',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+        }
+      },
+        (error) => {
+          console.log("Error: ", error)
+        }
+      )
+    }
   }
 
 }

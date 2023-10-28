@@ -4,33 +4,32 @@
     <button (click)="onConsultaClick()">Consulta</button>
   </aside>
 
-
-
-
   <main class="content" style="margin-left: 15%;">
     <header>
       <h1>Bienvenido a Mi Página de Inicio</h1>
     </header>
     <form [formGroup]="clientForm">
       <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" class="form-control" formControlName="id" />
+        <label for="id_cliente">ID del Cliente</label>
+        <input type="text" class="form-control" formControlName="id_cliente" />
+        <button type="button" class="btn btn-primary" (click)="buscarCliente()" style="width: 50%;">Buscar</button>
       </div>
       <div class="form-group">
         <label for="monto">Monto</label>
         <input type="number" class="form-control" formControlName="monto" />
       </div>
       <div class="form-group">
-        <label for="plazos">Plazos</label>
-        <input type="number" class="form-control" formControlName="plazos" />
+        <label for="plazo_meses">Plazos</label>
+        <input type="number" class="form-control" formControlName="plazo_meses" />
       </div>
       <div class="form-group">
         <label for="interes">Interés</label>
         <input type="number" class="form-control" formControlName="interes" />
+        <button type="submit" class="btn btn-primary" (click)="calcular()" style="width: 50%;">Calcular</button>
       </div>
       <br>
-      <button type="submit" class="btn btn-primary" (click)="buscar()" style="width: 10%;">Enviar</button>
     </form>
+
     <div *ngIf="resultados.length > 0">
       <table class="table">
         <thead>
@@ -52,9 +51,8 @@
           </tr>
         </tbody>
       </table>
+      <p>Total a pagar: {{ totalPago }}</p>
       <button (click)="creditoAprobado()">Aprobar Credito</button>
     </div>
-
-
   </main>
 </div>

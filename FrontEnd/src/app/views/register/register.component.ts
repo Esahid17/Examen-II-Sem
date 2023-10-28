@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -40,6 +41,12 @@ export class RegisterComponent {
       this.apiService.postCliente(this.formularioRegistro.value).subscribe((response) => {
         if (response) {
           console.log("Respuesta: ", response)
+          Swal.fire({
+            title: 'Cliente registrado',
+            text: 'Tu ID de cliente es: ' + response.id_cliente,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
         }
       },
         (error) => {
