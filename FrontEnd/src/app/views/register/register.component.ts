@@ -38,12 +38,13 @@ export class RegisterComponent {
     if (this.formularioRegistro.valid) {
       console.log("Formulario: ", this.formularioRegistro.value)
 
-      this.apiService.postCliente(this.formularioRegistro.value).subscribe((response) => {
+      this.apiService.postCliente(this.formularioRegistro.value).subscribe((response : any) => {
         if (response) {
           console.log("Respuesta: ", response)
+          var respuesta = response
           Swal.fire({
             title: 'Cliente registrado',
-            html: `Tu ID de cliente es: ` + `<b>${response.id_cliente}</b>`,
+            html: `Tu ID de cliente es: ` + `<b>${respuesta.newCliente.nombre}</b>`,
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })
@@ -58,12 +59,17 @@ export class RegisterComponent {
 
   onRegistroClick() {
     console.log('Botón de Registro clickeado');
-    this.router.navigate(["/clients"]);
+    this.router.navigate(["/register"]);
   }
 
   onConsultaClick() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/clients"]);
     console.log('Botón de Consulta clickeado');
+  }
+
+  onHomeClick() {
+    console.log('Botón de Consulta clickeado');
+    this.router.navigate([""]);
   }
 
 }

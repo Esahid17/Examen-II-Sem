@@ -37,8 +37,13 @@ export class ClientsComponent {
   }
 
   onConsultaClick() {
-    this.router.navigate(["/"]);
     console.log('Botón de Consulta clickeado');
+    this.router.navigate(["/clients"]);
+  }
+
+  onHomeClick() {
+    console.log('Botón de Consulta clickeado');
+    this.router.navigate([""]);
   }
 
 
