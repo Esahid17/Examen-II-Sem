@@ -16,15 +16,15 @@
       </div>
       <div class="form-group">
         <label for="monto">Monto</label>
-        <input type="number" class="form-control" formControlName="monto" />
+        <input type="number" class="form-control" formControlName="monto" [disabled]="!clienteEncontrado" />
       </div>
       <div class="form-group">
         <label for="plazo_meses">Plazos</label>
-        <input type="number" class="form-control" formControlName="plazo_meses" />
+        <input type="number" class="form-control" formControlName="plazo_meses" [disabled]="!clienteEncontrado" />
       </div>
       <div class="form-group">
         <label for="interes">Interés</label>
-        <input type="number" class="form-control" formControlName="interes" />
+        <input type="number" class="form-control" formControlName="interes" [disabled]="!clienteEncontrado" />
         <button type="submit" class="btn btn-primary" (click)="calcular()" style="width: 50%;">Calcular</button>
       </div>
       <br>

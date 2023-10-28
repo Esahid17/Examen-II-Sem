@@ -11,12 +11,8 @@ import Swal from 'sweetalert2';
 })
 
 export class ClientsComponent {
-  clientForm: FormGroup = new FormGroup({
-    id_cliente: new FormControl(''),
-    monto: new FormControl(''),
-    plazo_meses: new FormControl(''),
-    interes: new FormControl('')
-  });
+  clienteEncontrado: boolean = false;
+  clientForm: FormGroup;
 
   totalPago: number = 0;
   resultados: any[] = [];
@@ -27,25 +23,23 @@ export class ClientsComponent {
     private apiService: ApiService
   ) {
     this.clientForm = this.fb.group({
-      id_cliente: [null, Validators.required],
-      monto: [null, Validators.required],
-      plazo_meses: [null, Validators.required],
-      interes: [null, Validators.required],
+      id_cliente: [{ value: '', disabled: false }, Validators.required],
+      monto: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
+      plazo_meses: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
+      interes: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
     });
-
   }
 
   onRegistroClick() {
-    // Aquí puedes definir la lógica para el botón de Registro
     console.log('Botón de Registro clickeado');
     this.router.navigate(["/register"]);
   }
 
   onConsultaClick() {
-    // Aquí puedes definir la lógica para el botón de Consulta
     this.router.navigate(["/"]);
     console.log('Botón de Consulta clickeado');
   }
+
 
   calcular() {
     if (this.clientForm.valid) {
@@ -62,7 +56,6 @@ export class ClientsComponent {
       let saldo = total;
 
       for (let i = 1; i <= plazos; i++) {
-        const interesMensual = saldo * interes;
         const capitalMensual = cuota - interesFijo;
         saldo -= cuota;
 
@@ -81,23 +74,40 @@ export class ClientsComponent {
     const id_cliente = this.clientForm.get('id_cliente')?.value;
 
     this.apiService.getClienteById(id_cliente).subscribe((response) => {
-      if (response) {
-        console.log("Respuesta: ", response)
+      if (response && typeof response !== 'string') {
         Swal.fire({
           title: 'Cliente encontrado',
           icon: 'success',
           confirmButtonText: 'Aceptar'
-        })
+        });
+
+        console.log("Respuesta: ", response);
+        this.clienteEncontrado = true;
+
+        // Habilitar los campos del formulario al encontrar el cliente
+        this.clientForm.get('monto')?.enable();
+        this.clientForm.get('plazo_meses')?.enable();
+        this.clientForm.get('interes')?.enable();
+      } else {
+        Swal.fire({
+          title: 'Cliente no encontrado',
+          text: 'El cliente no existe en la base de datos',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+
+        this.clienteEncontrado = false;
+        this.clientForm.get('monto')?.reset();
+        this.clientForm.get('plazo_meses')?.reset();
+        this.clientForm.get('interes')?.reset();
+        this.clientForm.get('monto')?.disable();
+        this.clientForm.get('plazo_meses')?.disable();
+        this.clientForm.get('interes')?.disable();
       }
-    },
-      (error) => {
-        console.log("Error: ", error)
-      }
-    )
+    });
   }
 
   creditoAprobado() {
-    // Guardar en la base de datos
     if (this.clientForm.valid) {
       console.log("Formulario: ", this.clientForm.value)
 

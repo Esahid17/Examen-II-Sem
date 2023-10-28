@@ -57,13 +57,11 @@ export class RegisterComponent {
   }
 
   onRegistroClick() {
-    // Aquí puedes definir la lógica para el botón de Registro
     console.log('Botón de Registro clickeado');
     this.router.navigate(["/clients"]);
   }
 
   onConsultaClick() {
-    // Aquí puedes definir la lógica para el botón de Consulta
     this.router.navigate(["/"]);
     console.log('Botón de Consulta clickeado');
   }
