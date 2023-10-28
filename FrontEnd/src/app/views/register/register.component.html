@@ -1,8 +1,7 @@
-
 <div class="row">
   <aside class="sidebar col-1">
-      <button (click)="onRegistroClick()">Consulta</button>
-      <button (click)="onConsultaClick()">Home</button>
+    <button (click)="onRegistroClick()">Consulta</button>
+    <button (click)="onConsultaClick()">Home</button>
   </aside>
 
   <main class="content" style="margin-left: 15%;">
@@ -11,44 +10,49 @@
         <div class="card-body">
           <h2 class="card-title">Formulario de Registro</h2>
           <form [formGroup]="formularioRegistro">
-              <div class="form-group">
-                <label for="nombreCompleto">Nombre Completo:</label>
-                <input type="text" id="nombreCompleto" formControlName="nombreCompleto" class="form-control" [ngClass]="{'is-invalid': formularioRegistro.get('nombreCompleto')?.invalid && formularioRegistro.get('nombreCompleto')?.touched, 'is-valid': formularioRegistro.get('nombreCompleto')?.valid && formularioRegistro.get('nombreCompleto')?.touched, 'is-empty': formularioRegistro.get('nombreCompleto')?.untouched}">
-              </div>
-        
-              <div class="form-group">
-                <label for="rfc">RFC:</label>
-                <input type="text" id="rfc" formControlName="rfc" class="form-control" maxlength="13" [ngClass]="{'is-invalid': formularioRegistro.get('rfc')?.invalid && formularioRegistro.get('rfc')?.touched, 'is-valid': formularioRegistro.get('rfc')?.valid && formularioRegistro.get('rfc')?.touched, 'is-empty': formularioRegistro.get('rfc')?.untouched}">
-              </div>
-        
-              <div class="form-group">
-                <label for="edad">Edad:</label>
-                <input type="number" id="edad" formControlName="edad" class="form-control" min="1" max="99" [ngClass]="{'is-invalid': formularioRegistro.get('edad')?.invalid && formularioRegistro.get('edad')?.touched, 'is-valid': formularioRegistro.get('edad')?.valid && formularioRegistro.get('edad')?.touched, 'is-empty': formularioRegistro.get('edad')?.untouched}">
-              </div>
-        
-              <div class="form-group">
-                <label for="fechaAlta">Fecha de Alta:</label>
-                <input type="date" id="fechaAlta" formControlName="fechaAlta" class="form-control" [ngClass]="{'is-invalid': formularioRegistro.get('fechaAlta')?.invalid && formularioRegistro.get('fechaAlta')?.touched, 'is-valid': formularioRegistro.get('fechaAlta')?.valid && formularioRegistro.get('fechaAlta')?.touched, 'is-empty': formularioRegistro.get('fechaAlta')?.untouched}">
-              </div>
-        
-              <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" formControlName="telefono" class="form-control" [ngClass]="{'is-invalid': formularioRegistro.get('telefono')?.invalid && formularioRegistro.get('telefono')?.touched, 'is-valid': formularioRegistro.get('telefono')?.valid && formularioRegistro.get('telefono')?.touched, 'is-empty': formularioRegistro.get('telefono')?.untouched}">
-              </div>
-        
-              <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" formControlName="correo" class="form-control" [ngClass]="{'is-invalid': formularioRegistro.get('correo')?.invalid && formularioRegistro.get('correo')?.touched, 'is-valid': formularioRegistro.get('correo')?.valid && formularioRegistro.get('correo')?.touched, 'is-empty': formularioRegistro.get('correo')?.untouched}">
-              </div>
-              <br>
-              
-              <div style="align-items: center; align-content: center; text-align: center;">
-                  <button type="submit" class="btn btn-primary" (click)="registro()">Registrarse</button>
-              </div>
+            <div class="form-group">
+              <label for="nombreCompleto">Nombre Completo:</label>
+              <input type="text" id="nombreCompleto" formControlName="nombreCompleto" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('nombreCompleto')?.invalid && formularioRegistro.get('nombreCompleto')?.touched, 'is-valid': formularioRegistro.get('nombreCompleto')?.valid && formularioRegistro.get('nombreCompleto')?.touched, 'is-empty': formularioRegistro.get('nombreCompleto')?.untouched}">
+            </div>
+
+            <div class="form-group">
+              <label for="rfc">RFC:</label>
+              <input type="text" id="rfc" formControlName="rfc" class="form-control" maxlength="13"
+                [ngClass]="{'is-invalid': formularioRegistro.get('rfc')?.invalid && formularioRegistro.get('rfc')?.touched, 'is-valid': formularioRegistro.get('rfc')?.valid && formularioRegistro.get('rfc')?.touched, 'is-empty': formularioRegistro.get('rfc')?.untouched}">
+            </div>
+
+            <div class="form-group">
+              <label for="edad">Edad:</label>
+              <input type="number" id="edad" formControlName="edad" class="form-control" min="1" max="99"
+                [ngClass]="{'is-invalid': formularioRegistro.get('edad')?.invalid && formularioRegistro.get('edad')?.touched, 'is-valid': formularioRegistro.get('edad')?.valid && formularioRegistro.get('edad')?.touched, 'is-empty': formularioRegistro.get('edad')?.untouched}">
+            </div>
+
+            <div class="form-group">
+              <label for="fechaAlta">Fecha de Alta:</label>
+              <input type="date" id="fechaAlta" formControlName="fechaAlta" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('fechaAlta')?.invalid && formularioRegistro.get('fechaAlta')?.touched, 'is-valid': formularioRegistro.get('fechaAlta')?.valid && formularioRegistro.get('fechaAlta')?.touched, 'is-empty': formularioRegistro.get('fechaAlta')?.untouched}">
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Teléfono:</label>
+              <input type="tel" id="telefono" formControlName="telefono" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('telefono')?.invalid && formularioRegistro.get('telefono')?.touched, 'is-valid': formularioRegistro.get('telefono')?.valid && formularioRegistro.get('telefono')?.touched, 'is-empty': formularioRegistro.get('telefono')?.untouched}">
+            </div>
+
+            <div class="form-group">
+              <label for="correo">Correo:</label>
+              <input type="email" id="correo" formControlName="correo" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('correo')?.invalid && formularioRegistro.get('correo')?.touched, 'is-valid': formularioRegistro.get('correo')?.valid && formularioRegistro.get('correo')?.touched, 'is-empty': formularioRegistro.get('correo')?.untouched}">
+            </div>
+            <br>
+
+            <div style="align-items: center; align-content: center; text-align: center;">
+              <button type="submit" class="btn btn-primary" (click)="registro()">Registrarse</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </main>
 </div>
-

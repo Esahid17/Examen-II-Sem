@@ -7,19 +7,20 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
   formularioRegistro: FormGroup = new FormGroup({
-    nombreCompleto : new FormControl(''),
-    rfc :  new FormControl(''),
-    edad : new FormControl(''),
-    fechaAlta : new FormControl(''),
-    telefono : new FormControl(''),
-    correo : new FormControl(''),
+    nombreCompleto: new FormControl(''),
+    rfc: new FormControl(''),
+    edad: new FormControl(''),
+    fechaAlta: new FormControl(''),
+    telefono: new FormControl(''),
+    correo: new FormControl(''),
   });
 
   constructor(
     private fb: FormBuilder,
-    private router: Router){
+    private router: Router) {
     this.formularioRegistro = this.fb.group({
       nombreCompleto: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
@@ -30,10 +31,10 @@ export class RegisterComponent {
     });
   }
 
-  registro(){
-    if(this.formularioRegistro.valid){
+  registro() {
+    if (this.formularioRegistro.valid) {
       console.log("Es valido ")
-      var formulario =  this.formularioRegistro.value
+      var formulario = this.formularioRegistro.value
       console.log("Formulario: ", formulario)
     }
   }
