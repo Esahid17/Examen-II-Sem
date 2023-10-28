@@ -1,0 +1,55 @@
+.center-container {
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .card {
+    max-width: 600px; /* Ajusta el ancho de la tarjeta según tus necesidades */
+    margin: 0 auto; /* Para centrar horizontalmente la tarjeta */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente dentro de la tarjeta */
+    align-items: center; /* Centra verticalmente dentro de la tarjeta */
+  }
+  
+  .card-body{
+    width: 100%;
+  }
+  
+  .row {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px; /* Ancho de la barra lateral */
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100%; /* Altura al 100% */
+    position: fixed; /* Para que se mantenga fijo en la pantalla */
+}
+
+button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+main {
+    width: 80%;
+}
