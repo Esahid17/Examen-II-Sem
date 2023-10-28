@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,22 +11,23 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent {
   formularioRegistro: FormGroup = new FormGroup({
-    nombreCompleto: new FormControl(''),
+    nombre: new FormControl(''),
     rfc: new FormControl(''),
     edad: new FormControl(''),
-    fechaAlta: new FormControl(''),
+    fecha_alta: new FormControl(''),
     telefono: new FormControl(''),
     correo: new FormControl(''),
   });
 
   constructor(
     private fb: FormBuilder,
+    private apiService: ApiService,
     private router: Router) {
     this.formularioRegistro = this.fb.group({
-      nombreCompleto: ['', Validators.required],
+      nombre: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
       edad: [null, Validators.required],
-      fechaAlta: [null, Validators.required],
+      fecha_alta: [null, Validators.required],
       telefono: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
     });
@@ -33,9 +35,17 @@ export class RegisterComponent {
 
   registro() {
     if (this.formularioRegistro.valid) {
-      console.log("Es valido ")
-      var formulario = this.formularioRegistro.value
-      console.log("Formulario: ", formulario)
+      console.log("Formulario: ", this.formularioRegistro.value)
+
+      this.apiService.postCliente(this.formularioRegistro.value).subscribe((response) => {
+        if (response) {
+          console.log("Respuesta: ", response)
+        }
+      },
+        (error) => {
+          console.log("Error: ", error)
+        }
+      )
     }
   }
 

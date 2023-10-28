@@ -11,9 +11,9 @@
           <h2 class="card-title">Formulario de Registro</h2>
           <form [formGroup]="formularioRegistro">
             <div class="form-group">
-              <label for="nombreCompleto">Nombre Completo:</label>
-              <input type="text" id="nombreCompleto" formControlName="nombreCompleto" class="form-control"
-                [ngClass]="{'is-invalid': formularioRegistro.get('nombreCompleto')?.invalid && formularioRegistro.get('nombreCompleto')?.touched, 'is-valid': formularioRegistro.get('nombreCompleto')?.valid && formularioRegistro.get('nombreCompleto')?.touched, 'is-empty': formularioRegistro.get('nombreCompleto')?.untouched}">
+              <label for="nombre">Nombre Completo:</label>
+              <input type="text" id="nombre" formControlName="nombre" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('nombre')?.invalid && formularioRegistro.get('nombre')?.touched, 'is-valid': formularioRegistro.get('nombre')?.valid && formularioRegistro.get('nombre')?.touched, 'is-empty': formularioRegistro.get('nombre')?.untouched}">
             </div>
 
             <div class="form-group">
@@ -29,9 +29,9 @@
             </div>
 
             <div class="form-group">
-              <label for="fechaAlta">Fecha de Alta:</label>
-              <input type="date" id="fechaAlta" formControlName="fechaAlta" class="form-control"
-                [ngClass]="{'is-invalid': formularioRegistro.get('fechaAlta')?.invalid && formularioRegistro.get('fechaAlta')?.touched, 'is-valid': formularioRegistro.get('fechaAlta')?.valid && formularioRegistro.get('fechaAlta')?.touched, 'is-empty': formularioRegistro.get('fechaAlta')?.untouched}">
+              <label for="fecha_alta">Fecha de Alta:</label>
+              <input type="date" id="fecha_alta" formControlName="fecha_alta" class="form-control"
+                [ngClass]="{'is-invalid': formularioRegistro.get('fecha_alta')?.invalid && formularioRegistro.get('fecha_alta')?.touched, 'is-valid': formularioRegistro.get('fecha_alta')?.valid && formularioRegistro.get('fecha_alta')?.touched, 'is-empty': formularioRegistro.get('fecha_alta')?.untouched}">
             </div>
 
             <div class="form-group">
