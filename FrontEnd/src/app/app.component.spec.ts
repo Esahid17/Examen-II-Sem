@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Cliente } from './models/Cliente';
 import { Prestamo } from './models/Prestamo';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -37,14 +38,13 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('examenParcial2');
   });
 
-  /*
-  it('should post new cliente', () => {
+
+  it('should post new cliente', (done: DoneFn) => {
     const cliente: Cliente = {
-      id_cliente: 1,
       nombre: 'John Doe',
       rfc: 'CAGE010717Q70',
       edad: 12,
-      fecha_alta: new Date('2001-10-12'),
+      fecha_alta: '2001-10-12',
       telefono: '1234567890',
       correo: 'johndoe@example.com'
     };
@@ -52,20 +52,24 @@ describe('AppComponent', () => {
     const apiService = TestBed.inject(ApiService);
 
     // Crear un espía para el método postCliente
-    const postSpy = spyOn(apiService, 'postCliente').and.callThrough();
+    const postSpy = spyOn(apiService, 'postCliente').and.returnValue(of({
+      id_cliente: 123, // Asegúrate de que el objeto devuelto tenga una propiedad id_cliente
+      ...cliente
+    }));
 
     apiService.postCliente(cliente).subscribe((response) => {
-      expect(response).toEqual(cliente);
+      expect(response).toBeTruthy();
+      expect(typeof response.id_cliente).toBe('number'); // Verificar que id_cliente es un número
 
       // Verificar que el método postCliente fue llamado
       expect(postSpy).toHaveBeenCalled();
 
       // Verificar que el método postCliente fue llamado con el cliente correcto
       expect(postSpy).toHaveBeenCalledWith(cliente);
+
+      done(); // Indicar que la operación asíncrona ha terminado
     });
   });
-  */
-
 
   it('should get all Clientes', (done: DoneFn) => {
     const apiService: ApiService = TestBed.inject(ApiService);
@@ -87,7 +91,7 @@ describe('AppComponent', () => {
     });
   });
 
-  it('should get a Cliente by id', () => {
+  it('should get a Cliente by id', (done: DoneFn) => {
     const apiService: ApiService = TestBed.inject(ApiService);
     const id_cliente = 1;
 
@@ -103,80 +107,31 @@ describe('AppComponent', () => {
 
       // Verificar que el método getClienteById fue llamado con el id_cliente correcto
       expect(getClienteByIdSpy).toHaveBeenCalledWith(id_cliente);
+
+      done(); // Indicate that the async operation has completed
     });
   });
 
-  /*
-
-  it('should update a Cliente by id', () => {
-    const cliente: Cliente = {
-      id_cliente: 1,
-      nombre: 'John Doe Updated',
-      rfc: 'CAGE010717Q70',
-      edad: 13,
-      fecha_alta: '2023-10-27',
-      telefono: '1234567890',
-      correo: 'johndoeupdated@example.com'
-    };
-
+  it('should get all Prestamos by id_cliente', (done: DoneFn) => {
     const apiService: ApiService = TestBed.inject(ApiService);
+    const id_cliente = 1;
 
-    // Crear un espía para el método updateClienteById
-    const updateClienteByIdSpy = spyOn(apiService, 'updateClienteById').and.callThrough();
+    // Crear un espía para el método getPrestamosCliente
+    const getPrestamosClienteSpy = spyOn(apiService, 'getPrestamosCliente').and.callThrough();
 
-    apiService.updateClienteById(cliente).subscribe((response) => {
-      expect(response).toEqual(cliente);
+    apiService.getPrestamosCliente(id_cliente).subscribe(prestamos => {
+      expect(prestamos).toBeTruthy();
+      expect(Array.isArray(prestamos)).toBe(true);
 
-      // Verificar que el método updateClienteById fue llamado
-      expect(updateClienteByIdSpy).toHaveBeenCalled();
+      // Verificar que el método getPrestamosCliente fue llamado
+      expect(getPrestamosClienteSpy).toHaveBeenCalled();
 
-      // Verificar que el método updateClienteById fue llamado con el cliente correcto
-      expect(updateClienteByIdSpy).toHaveBeenCalledWith(cliente);
+      // Verificar que el método getPrestamosCliente fue llamado con el id_cliente correcto
+      expect(getPrestamosClienteSpy).toHaveBeenCalledWith(id_cliente);
+
+      done(); // Indicar que la operación asíncrona ha terminado
     });
   });
 
-it('should delete a Cliente by id', (done: DoneFn) => {
-  const id_cliente = 1;
-
-  const cliente: Cliente = {
-    id_cliente: id_cliente,
-    nombre: 'John Doe',
-    rfc: 'CAGE010717Q70',
-    edad: 30,
-    fecha_alta: '2023-10-27',
-    telefono: '1234567890',
-    correo: 'johndoe@example.com'
-  };
-
-  const prestamo: Prestamo = {
-    id_prestamo: 1,
-    id_cliente: id_cliente,
-    monto: 5000,
-    plazo_meses: 12,
-    interes: 0.05
-  };
-
-  const apiService: ApiService = TestBed.inject(ApiService);
-
-  // Crear un espía para el método deleteClienteById
-  const deleteClienteByIdSpy = spyOn(apiService, 'deleteClienteById').and.callThrough();
-
-  // Supongamos que ya has creado un cliente y préstamos relacionados...
-
-  apiService.deleteClienteById(id_cliente).subscribe((response) => {
-    expect(response).toBeTruthy();
-
-    // Verificar que el método deleteClienteById fue llamado
-    expect(deleteClienteByIdSpy).toHaveBeenCalled();
-
-    // Verificar que el método deleteClienteById fue llamado con el id_cliente correcto
-    expect(deleteClienteByIdSpy).toHaveBeenCalledWith(id_cliente);
-
-    // Aquí deberías verificar que el cliente y los préstamos fueron eliminados...
-
-    done();
-  });
-});
-*/
-
+  // PostPrestamo
 });

@@ -18,8 +18,8 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postCliente(cliente: Cliente): Observable<Cliente> {
-    return this.httpClient.post<Cliente>(_URL_POST_CLIENTE, cliente);
+  postCliente(cliente: Cliente): Observable<any> {
+    return this.httpClient.post<any>(_URL_POST_CLIENTE, cliente);
   }
 
   getAllClientes(): Observable<Cliente[]> {

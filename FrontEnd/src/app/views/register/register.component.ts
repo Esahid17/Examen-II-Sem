@@ -38,7 +38,7 @@ export class RegisterComponent {
           var respuesta = response
           Swal.fire({
             title: 'Cliente registrado',
-            html: `Nombre del cliente: ` + `<b>${respuesta.newCliente.nombre}</b>`,
+            html: `Nombre del cliente: <b>${respuesta.nombre}</b>`,
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })

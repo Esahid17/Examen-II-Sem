@@ -19,7 +19,7 @@ describe('RegisterComponent', () => {
         FormsModule,
         HttpClientModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;

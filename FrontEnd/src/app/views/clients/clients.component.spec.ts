@@ -11,7 +11,7 @@ describe('ClientsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClientsComponent ],
+      declarations: [ClientsComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -19,7 +19,7 @@ describe('ClientsComponent', () => {
         FormsModule,
         HttpClientModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ClientsComponent);
     component = fixture.componentInstance;
