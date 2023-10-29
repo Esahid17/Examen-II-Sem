@@ -10,29 +10,32 @@ describe('RegisterComponent', () => {
   let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async () => {
+    // Configuración de pruebas
     await TestBed.configureTestingModule({
-      declarations: [RegisterComponent],
+      declarations: [RegisterComponent], // Componente a probar
       imports: [
-        HttpClientTestingModule,
+        HttpClientTestingModule, // Módulo para simular peticiones HTTP
         RouterTestingModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule]
-    })
-      .compileComponents();
+        HttpClientModule
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
+  // Pruebas relacionadas con la creación del componente Register
   describe('Creación de elementos', () => {
-
     it('should create', () => {
+      // Verifica si el componente se ha creado exitosamente
       expect(component).toBeTruthy();
     });
 
     it('should create the registration form', () => {
+      // Verifica la existencia de campos en el formulario de registro
       expect(component.formularioRegistro.contains('nombre')).toBeTruthy();
       expect(component.formularioRegistro.contains('rfc')).toBeTruthy();
       expect(component.formularioRegistro.contains('edad')).toBeTruthy();
@@ -42,9 +45,11 @@ describe('RegisterComponent', () => {
     });
   });
 
+  // Pruebas relacionadas con la validación del formulario de registro
   describe('Validación del formulario de registro', () => {
-
+    // Pruebas para verificar campos requeridos en el formulario
     it('should make the nombre field required', () => {
+      // Simula el campo nombre del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('nombre');
       if (control) {
         control.setValue('');
@@ -55,6 +60,7 @@ describe('RegisterComponent', () => {
     });
 
     it('should make the rfc field required', () => {
+      // Simula el campo rfc del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('rfc');
       if (control) {
         control.setValue('');
@@ -65,6 +71,7 @@ describe('RegisterComponent', () => {
     });
 
     it('should make the edad field required', () => {
+      // Simula el campo edad del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('edad');
       if (control) {
         control.setValue('');
@@ -75,6 +82,7 @@ describe('RegisterComponent', () => {
     });
 
     it('should make the fecha_alta field required', () => {
+      // Simula el campo fecha_alta del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('fecha_alta');
       if (control) {
         control.setValue('');
@@ -85,6 +93,7 @@ describe('RegisterComponent', () => {
     });
 
     it('should make the telefono field required', () => {
+      // Simula el campo telefono del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('telefono');
       if (control) {
         control.setValue('');
@@ -95,6 +104,7 @@ describe('RegisterComponent', () => {
     });
 
     it('should make the correo field required', () => {
+      // Simula el campo correo del formulario y verifica si es inválido cuando está vacío
       let control = component.formularioRegistro.get('correo');
       if (control) {
         control.setValue('');
