@@ -26,7 +26,82 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Creación de elementos', () => {
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should create the registration form', () => {
+      expect(component.formularioRegistro.contains('nombre')).toBeTruthy();
+      expect(component.formularioRegistro.contains('rfc')).toBeTruthy();
+      expect(component.formularioRegistro.contains('edad')).toBeTruthy();
+      expect(component.formularioRegistro.contains('fecha_alta')).toBeTruthy();
+      expect(component.formularioRegistro.contains('telefono')).toBeTruthy();
+      expect(component.formularioRegistro.contains('correo')).toBeTruthy();
+    });
+  });
+
+  describe('Validación del formulario de registro', () => {
+
+    it('should make the nombre field required', () => {
+      let control = component.formularioRegistro.get('nombre');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
+
+    it('should make the rfc field required', () => {
+      let control = component.formularioRegistro.get('rfc');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
+
+    it('should make the edad field required', () => {
+      let control = component.formularioRegistro.get('edad');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
+
+    it('should make the fecha_alta field required', () => {
+      let control = component.formularioRegistro.get('fecha_alta');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
+
+    it('should make the telefono field required', () => {
+      let control = component.formularioRegistro.get('telefono');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
+
+    it('should make the correo field required', () => {
+      let control = component.formularioRegistro.get('correo');
+      if (control) {
+        control.setValue('');
+        expect(control.valid).toBeFalsy();
+      } else {
+        fail('Control is null');
+      }
+    });
   });
 });

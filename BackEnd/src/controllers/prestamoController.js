@@ -38,7 +38,7 @@ const createNewPrestamo = async (req, res) => {
         };
 
         await prestamoService.createNewPrestamo({ newPrestamo });
-        res.status(201).json({ message: 'Préstamo creado exitosamente', newPrestamo });
+        res.status(201).json(newPrestamo);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al crear el préstamo' });

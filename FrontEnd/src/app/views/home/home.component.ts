@@ -27,7 +27,6 @@ export class HomeComponent {
   }
 
   mostrarTabla(idClient: any) {
-
     this.apiService.getPrestamosCliente(parseInt(idClient)).subscribe(
       (response: any) => {
         this.prestamos = response

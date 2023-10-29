@@ -26,7 +26,7 @@ const createNewPrestamo = ({ newPrestamo }) => {
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO prestamo SET ?', [newPrestamo], (err, result) => {
             if (err) reject(err);
-            resolve(result);
+            resolve({ id_prestamo: result.id_prestamo, ...newPrestamo });
         });
     });
 }

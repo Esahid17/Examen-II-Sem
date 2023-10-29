@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -45,7 +45,6 @@ export class ClientsComponent {
     console.log('Botón de Consulta clickeado');
     this.router.navigate([""]);
   }
-
 
   calcular() {
     if (this.clientForm.valid) {
