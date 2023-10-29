@@ -3,11 +3,11 @@ const router = express.Router();
 const prestamoController = require('../../controllers/prestamoController');
 
 router
+    .post('/postPrestamo', prestamoController.createNewPrestamo)
+
     .get('/getAllPrestamos', prestamoController.getAllPrestamos)
 
     .get('/getPrestamosById/:id_prestamo', prestamoController.getOnePrestamo)
-
-    .post('/postPrestamo', prestamoController.createNewPrestamo)
 
     .put('/updatePrestamoById/:id_prestamo', prestamoController.updateOnePrestamo)
 

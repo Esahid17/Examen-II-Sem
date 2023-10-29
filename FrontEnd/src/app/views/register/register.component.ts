@@ -1,53 +1,69 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
-  formularioRegistro: FormGroup = new FormGroup({
-    nombreCompleto : new FormControl(''),
-    rfc :  new FormControl(''),
-    edad : new FormControl(''),
-    fechaAlta : new FormControl(''),
-    telefono : new FormControl(''),
-    correo : new FormControl(''),
-  });
+  formularioRegistro: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router){
+    private apiService: ApiService,
+    private router: Router) {
     this.formularioRegistro = this.fb.group({
-      nombreCompleto: ['', Validators.required],
+      nombre: ['', Validators.required],
       rfc: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
       edad: [null, Validators.required],
-      fechaAlta: [null, Validators.required],
+      fecha_alta: [null, Validators.required],
       telefono: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
     });
   }
 
-  registro(){
-    if(this.formularioRegistro.valid){
-      console.log("Es valido ")
-      var formulario =  this.formularioRegistro.value
-      console.log("Formulario: ", formulario)
+  registro() {
+    if (this.formularioRegistro.valid) {
+      console.log("Formulario: ", this.formularioRegistro.value)
+      console.log("Fecha formulario", this.formularioRegistro.value.fecha_alta)
+
+      this.apiService.postCliente(this.formularioRegistro.value).subscribe((response : any) => {
+        if (response) {
+          console.log("Respuesta: ", response)
+          var respuesta = response
+          Swal.fire({
+            title: 'Cliente registrado',
+            html: `Nombre del cliente: <b>${respuesta.nombre}</b>`,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+        }
+      },
+        (error) => {
+          console.log("Error: ", error)
+        }
+      )
     }
   }
 
   onRegistroClick() {
-    // Aquí puedes definir la lógica para el botón de Registro
     console.log('Botón de Registro clickeado');
-    this.router.navigate(["/clients"]);
+    this.router.navigate(["/register"]);
   }
 
   onConsultaClick() {
-    // Aquí puedes definir la lógica para el botón de Consulta
-    this.router.navigate(["/"]);
+    this.router.navigate(["/clients"]);
     console.log('Botón de Consulta clickeado');
+  }
+
+  onHomeClick() {
+    console.log('Botón de Consulta clickeado');
+    this.router.navigate([""]);
   }
 
 }

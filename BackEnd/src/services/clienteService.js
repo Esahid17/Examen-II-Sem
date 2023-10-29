@@ -26,7 +26,7 @@ const createNewCliente = ({ newCliente }) => {
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO cliente SET ?', [newCliente], (err, result) => {
             if (err) reject(err);
-            resolve(result);
+            resolve({ id_cliente: result.id_cliente, ...newCliente });
         });
     });
 }
