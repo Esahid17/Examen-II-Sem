@@ -11,14 +11,7 @@ import Swal from 'sweetalert2';
 })
 
 export class RegisterComponent {
-  formularioRegistro: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    rfc: new FormControl(''),
-    edad: new FormControl(''),
-    fecha_alta: new FormControl(''),
-    telefono: new FormControl(''),
-    correo: new FormControl(''),
-  });
+  formularioRegistro: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +30,7 @@ export class RegisterComponent {
   registro() {
     if (this.formularioRegistro.valid) {
       console.log("Formulario: ", this.formularioRegistro.value)
+      console.log("Fecha formulario", this.formularioRegistro.value.fecha_alta)
 
       this.apiService.postCliente(this.formularioRegistro.value).subscribe((response : any) => {
         if (response) {
@@ -44,7 +38,7 @@ export class RegisterComponent {
           var respuesta = response
           Swal.fire({
             title: 'Cliente registrado',
-            html: `Tu ID de cliente es: ` + `<b>${respuesta.newCliente.nombre}</b>`,
+            html: `Nombre del cliente: ` + `<b>${respuesta.newCliente.nombre}</b>`,
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })

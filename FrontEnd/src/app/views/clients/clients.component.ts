@@ -24,10 +24,10 @@ export class ClientsComponent {
     private apiService: ApiService
   ) {
     this.clientForm = this.fb.group({
-      id_cliente: [{ value: '', disabled: false }, Validators.required],
-      monto: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
-      plazo_meses: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
-      interes: [{ value: '', disabled: !this.clienteEncontrado }, Validators.required],
+      id_cliente: ['', Validators.required],
+      monto: [{ value: '', disabled: true }, Validators.required],
+      plazo_meses: [{ value: '', disabled: true }, Validators.required],
+      interes: [{ value: '', disabled: true }, Validators.required],
     });
   }
 
@@ -92,9 +92,11 @@ export class ClientsComponent {
 
         this.nombreCliente = response.nombre;
 
-        this.clientForm.get('monto')?.enable();
-        this.clientForm.get('plazo_meses')?.enable();
-        this.clientForm.get('interes')?.enable();
+        setTimeout(() => {
+          this.clientForm.get('monto')?.enable();
+          this.clientForm.get('plazo_meses')?.enable();
+          this.clientForm.get('interes')?.enable();
+        });
       } else {
         Swal.fire({
           title: 'Cliente no encontrado',
@@ -107,9 +109,12 @@ export class ClientsComponent {
         this.clientForm.get('monto')?.reset();
         this.clientForm.get('plazo_meses')?.reset();
         this.clientForm.get('interes')?.reset();
-        this.clientForm.get('monto')?.disable();
-        this.clientForm.get('plazo_meses')?.disable();
-        this.clientForm.get('interes')?.disable();
+
+        setTimeout(() => {
+          this.clientForm.get('monto')?.disable();
+          this.clientForm.get('plazo_meses')?.disable();
+          this.clientForm.get('interes')?.disable();
+        });
       }
     });
   }

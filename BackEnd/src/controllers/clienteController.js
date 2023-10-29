@@ -40,7 +40,7 @@ const createNewCliente = async (req, res) => {
         };
 
         await clienteService.createNewCliente({ newCliente });
-        res.status(201).json({ message: 'Cliente creado exitosamente', newCliente });
+        res.status(201).json({ newCliente });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al crear el cliente' });
